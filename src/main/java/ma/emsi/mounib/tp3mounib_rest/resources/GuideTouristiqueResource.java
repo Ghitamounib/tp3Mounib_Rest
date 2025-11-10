@@ -12,7 +12,10 @@ public class GuideTouristiqueResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("lieu/{ville_ou_pays}")
-    public String villeOuPays(@PathParam("ville_ou_pays") String ville_ou_pays) {
-        return llmClient.getGuide().genererGuide(ville_ou_pays);
+    public String villeOuPays(
+            @PathParam("ville_ou_pays") String villeOuPays,
+            @DefaultValue("2") @QueryParam("nb") int nbEndroits
+    ) {
+        return llmClient.getGuide().genererGuide(villeOuPays, nbEndroits);
     }
 }
